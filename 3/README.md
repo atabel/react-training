@@ -12,7 +12,8 @@ Open in your browser [http://localhost:8080/webpack-dev-server/](http://localhos
 
 ## Exercise
 * Modularize your app. Create some components:
-  * Header
-  * TodoList
-  * Todo
-* Render the Todo's from an array.
+  * ``Header``
+  * ``TodoList``
+  * ``Todo``
+* Each component should be in a separate file inside ``components/`` folder
+* Render the ``Todo``'s from an array.
