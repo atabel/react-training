@@ -1,6 +1,11 @@
 # Tuenti React training
 
-Clone this repo:
+## Prerequisites
+* node 4 o superior
+*
+
+## Training
+To start, clone this repo:
 ```
 $ git clone https://github.com/atabel/react-training.git
 ```
