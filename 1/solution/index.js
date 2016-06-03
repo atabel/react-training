@@ -1,8 +1,8 @@
 const Greeting = ({to}) => (
-	<div>hello {to}</div>
+    <div>hello {to}</div>
 );
 
 ReactDOM.render(
-  <Greeting to="Abel" />,
-  document.getElementById('app')
+    <Greeting to="Abel" />,
+    document.getElementById('app')
 );
