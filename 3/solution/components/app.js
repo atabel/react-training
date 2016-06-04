@@ -21,7 +21,7 @@ const labelStyle = {
 
 const App = () => (
 	<div style={containerStyle}>
-		<Header>Todo App 3</Header>
+		<Header>Todo App</Header>
 		<section style={contentStyle}>
 			<div style={labelStyle}>Things to do:</div>
 			<TodoList />
