@@ -1,7 +1,7 @@
 # Tuenti React training
 
 ## Prerequisites
-* node 4 o superior
+* node >= 4
 * npm 3
 * Chrome
 * Chrome React extension
