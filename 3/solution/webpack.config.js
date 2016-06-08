@@ -1,9 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
-
 module.exports = {
     entry: './index.js',
-    output: { path: __dirname, filename: 'build/bundle.js' },
+    output: {path: __dirname, filename: 'build/bundle.js'},
     module: {
         loaders: [
             {
@@ -13,9 +10,9 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react'],
                     plugins: ['transform-object-rest-spread'],
-                }
-            }
-        ]
+                },
+            },
+        ],
     },
-    devtool: 'source-map'
+    devtool: 'source-map',
 };
