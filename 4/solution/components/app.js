@@ -4,10 +4,12 @@ import Header from './header';
 import Filter from './filter';
 import TodoInput from './todo-input';
 
-let lastId = 0;
+const generateId = (id => () => id++)(0);
+
 const createTodo = (name) => ({
     name,
-    id: lastId++,
+    isDone: false,
+    id: generateId(),
 });
 
 const initialTodos = [
@@ -24,55 +26,44 @@ const containerStyle = {
 
 const App = React.createClass({
     getInitialState() {
-        const todos = {};
-
-        initialTodos.forEach(todo => {
-            todos[todo.id] = todo;
-        });
-
         return {
-            todos,
+            todos: initialTodos,
             filter: 'all',
         };
     },
 
     addTodo(todoName) {
-        const newTodo = createTodo(todoName);
         this.setState({
-            todos: {
+            todos: [
                 ...this.state.todos,
-                [newTodo.id]: newTodo,
-            },
+                createTodo(todoName),
+            ],
         });
     },
 
     toggleTodo(id) {
-        const todoToUpdate = this.state.todos[id];
-        const updatedTodo = {
-            ...todoToUpdate,
-            isDone: !todoToUpdate.isDone,
-        };
-
         this.setState({
-            todos: {
-                ...this.state.todos,
-                [id]: updatedTodo,
-            },
+            todos: this.state.todos.map(todo => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        isDone: !todo.isDone,
+                    };
+                } else {
+                    return todo;
+                }
+            }),
         });
     },
 
     getTodos(filter) {
-        return Object.keys(this.state.todos)
-            .map(id => this.state.todos[id])
-            .filter(todo => {
-                if (filter === 'done') {
-                    return todo.isDone;
-                } else if (filter === 'pending') {
-                    return !todo.isDone;
-                } else {
-                    return true;
-                }
-            });
+        if (filter === 'done') {
+            return this.state.todos.filter(todo => todo.isDone);
+        } else if (filter === 'pending') {
+            return this.state.todos.filter(todo => !todo.isDone);
+        } else {
+            return this.state.todos;
+        }
     },
 
     handleFilterChange(filter) {
