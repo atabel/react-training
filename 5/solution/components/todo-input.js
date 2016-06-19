@@ -16,19 +16,21 @@ const buttonStyle = {
 };
 
 const TodoInput = React.createClass({
-    handleButtonClick() {
-        const todoName = this.refs.todoInput.value.trim();
+    handleSubmit(e) {
+        e.preventDefault();
+        const todoName = this.input.value.trim();
         if (todoName.length > 0) {
             this.props.onNewTodo(todoName);
+            this.input.value = '';
         }
     },
 
     render() {
         return (
-            <div style={inputContainerStyle}>
-                <input style={inputStyle} type="text" ref="todoInput" />
-                <button style={buttonStyle} onClick={this.handleButtonClick}>Add</button>
-            </div>
+            <form style={inputContainerStyle} onSubmit={this.handleSubmit}>
+                <input style={inputStyle} type="text" ref={node => (this.input = node)} />
+                <button style={buttonStyle}>Add</button>
+            </form>
         );
     },
 });
